@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 RegisterCommand('tackle', function()
     if not QBCore.Functions.GetPlayerData().metadata["ishandcuffed"] and (IsPedSprinting(cache.ped) or IsPedRunning(cache.ped)) then
         local closestPlayer, closestDistance = QBCore.Functions.GetClosestPlayer()

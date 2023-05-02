@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 
 ----------- / alcohol
 for cAl in pairs(ConsumablesAlcohol) do
@@ -76,7 +75,7 @@ QBCore.Commands.Add('resetarmor', 'Resets Vest (Police Only)', {}, false, functi
     if Player.PlayerData.job.name == 'police' then
         TriggerClientEvent('consumables:client:ResetArmor', source)
     else
-        TriggerClientEvent('QBCore:Notify', source,  'For Police Officer Only', 'error')
+        TriggerClientEvent('esx:showNotification', source,  'For Police Officer Only', 'error')
     end
 end)
 

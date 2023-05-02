@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 local washingVehicle = false
 
 local function DrawText3Ds(x, y, z, text)
@@ -16,7 +15,7 @@ local function DrawText3Ds(x, y, z, text)
     ClearDrawOrigin()
 end
 
-RegisterNetEvent('qb-carwash:client:washCar', function()
+RegisterNetEvent('carwash:client:washCar', function()
     washingVehicle = true
     QBCore.Functions.Progressbar('search_cabin', 'Vehicle is being washed ..', math.random(4000, 8000), false, true, {
         disableMovement = true,
@@ -29,7 +28,7 @@ RegisterNetEvent('qb-carwash:client:washCar', function()
         WashDecalsFromVehicle(cache.vehicle, 1.0)
         washingVehicle = false
     end, function() -- Cancel
-        QBCore.Functions.Notify('Washing canceled ..', 'error')
+        ESX.ShowNotification('Washing canceled ..', 'error')
         washingVehicle = false
     end)
 end)
@@ -50,9 +49,9 @@ CreateThread(function()
                         DrawText3Ds(Config.CarWash[k]['coords']['x'], Config.CarWash[k]['coords']['y'], Config.CarWash[k]['coords']['z'], '~g~E~w~ - Washing car ($'..Config.DefaultPrice..')')
                         if IsControlJustPressed(0, 38) then
                             if dirtLevel > Config.DirtLevel then
-                                TriggerServerEvent('qb-carwash:server:washCar')
+                                TriggerServerEvent('carwash:server:washCar')
                             else
-                                QBCore.Functions.Notify('The vehicle isn\'t dirty', 'error')
+                                ESX.ShowNotification('The vehicle isn\'t dirty', 'error')
                             end
                         end
                     else

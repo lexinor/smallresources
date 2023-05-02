@@ -1,11 +1,14 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QB-SmallResources'
+description 'SmallResources'
 version '1.1.0'
 
-shared_script 'config.lua'
-shared_script '@ox_lib/init.lua'
+shared_script {
+	"@es_extended/imports.lua",
+	'@ox_lib/init.lua',
+	'config.lua',
+}
 server_script 'server/*.lua'
 client_script 'client/*.lua'
 

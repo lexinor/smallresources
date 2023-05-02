@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 local suicideWeapons = {
 	`WEAPON_PISTOL`,
 	`WEAPON_PISTOL_MK2`,
@@ -30,8 +29,9 @@ RegisterCommand('suicide', function()
 		Wait(750)
 		SetPedShootsAtCoord(cache.ped, 0.0, 0.0, 0.0, 0)
 		SetEntityHealth(cache.ped, 0)
-        QBCore.Functions.Notify('You killed yourself', 'error')
+        ESX.ShowNotification('You killed yourself', 'error')
+		
     else
-        QBCore.Functions.Notify('You don\'t have a pistol with ammo in your hand', 'error')
+        ESX.ShowNotification('You don\'t have a pistol with ammo in your hand', 'error')
 	end
 end, false)

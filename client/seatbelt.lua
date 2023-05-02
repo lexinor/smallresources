@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 local seatbeltOn = false
 local harnessOn = false
 local harnessHp = 20
@@ -262,7 +261,7 @@ RegisterNetEvent('seatbelt:client:UseHarness', function(ItemData)
             end
         end
     else
-        QBCore.Functions.Notify('You\'re not in a car.', 'error')
+        ESX.ShowNotification('You\'re not in a car.', 'error')
     end
 end)
 

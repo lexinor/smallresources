@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 local fireworkTime = 0
 local fireworkLoc = nil
 
@@ -125,6 +124,6 @@ RegisterNetEvent('fireworks:client:UseFirework', function(itemName, assetName)
         DoFireWork(assetName, pos)
     end, function() -- Cancel
         StopAnimTask(cache.ped, 'anim@narcotics@trash', 'drop_front', 1.0)
-        QBCore.Functions.Notify('Canceled..', 'error')
+        ESX.ShowNotification('Canceled..', 'error')
     end)
 end)

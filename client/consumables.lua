@@ -1,6 +1,5 @@
 -- Variables
 
-local QBCore = exports['qbx-core']:GetCoreObject()
 local alcoholCount, ParachuteEquiped, currentVest, currentVestTexture, healing, SmokingWeed, RelieveCount = 0, false, nil, nil, false, false, 0
 
 -- Functions
@@ -200,7 +199,7 @@ RegisterNetEvent('consumables:client:DrinkAlcohol', function(itemName)
 
     end, function() -- Cancel
         exports.scully_emotemenu:CancelAnimation()
-        QBCore.Functions.Notify('Cancelled..', 'error')
+        ESX.ShowNotification('Cancelled..', 'error')
     end)
 end)
 
@@ -222,7 +221,7 @@ RegisterNetEvent('consumables:client:Cokebaggy', function()
         CokeBaggyEffect()
     end, function() -- Cancel
         StopAnimTask(cache.ped, 'switch@trevor@trev_smoking_meth', 'trev_smoking_meth_loop', 1.0)
-        QBCore.Functions.Notify('Canceled..', 'error')
+        ESX.ShowNotification('Canceled..', 'error')
     end)
 end)
 
@@ -244,7 +243,7 @@ RegisterNetEvent('consumables:client:Crackbaggy', function()
         CrackBaggyEffect()
     end, function() -- Cancel
         StopAnimTask(cache.ped, 'switch@trevor@trev_smoking_meth', 'trev_smoking_meth_loop', 1.0)
-        QBCore.Functions.Notify('Canceled..', 'error')
+        ESX.ShowNotification('Canceled..', 'error')
     end)
 end)
 
@@ -265,7 +264,7 @@ RegisterNetEvent('consumables:client:EcstasyBaggy', function()
         EcstasyEffect()
     end, function() -- Cancel
         StopAnimTask(cache.ped, 'mp_suicide', 'pill', 1.0)
-        QBCore.Functions.Notify('Failed', 'error')
+        ESX.ShowNotification('Failed', 'error')
     end)
 end)
 
@@ -287,7 +286,7 @@ RegisterNetEvent('consumables:client:oxy', function()
 		HealOxy()
     end, function() -- Cancel
         StopAnimTask(cache.ped, 'mp_suicide', 'pill', 1.0)
-        QBCore.Functions.Notify('Canceled', 'error')
+        ESX.ShowNotification('Canceled', 'error')
     end)
 end)
 
@@ -310,7 +309,7 @@ RegisterNetEvent('consumables:client:meth', function()
         MethBagEffect()
     end, function() -- Cancel
         StopAnimTask(cache.ped, 'switch@trevor@trev_smoking_meth', 'trev_smoking_meth_loop', 1.0)
-        QBCore.Functions.Notify('Canceled..', 'error')
+        ESX.ShowNotification('Canceled..', 'error')
 	end)
 end)
 
@@ -370,12 +369,12 @@ RegisterNetEvent('consumables:client:ResetParachute', function()
             ParachuteEquiped = false
         end)
     else
-        QBCore.Functions.Notify('You dont have a parachute!', 'error')
+        ESX.ShowNotification('You dont have a parachute!', 'error')
     end
 end)
 
 RegisterNetEvent('consumables:client:UseArmor', function()
-    if GetPedArmour(cache.ped) >= 75 then QBCore.Functions.Notify('You already have enough armor on!', 'error') return end
+    if GetPedArmour(cache.ped) >= 75 then ESX.ShowNotification('You already have enough armor on!', 'error') return end
     QBCore.Functions.Progressbar('use_armor', 'Putting on the body armour..', 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
@@ -390,7 +389,7 @@ RegisterNetEvent('consumables:client:UseArmor', function()
 end)
 
 RegisterNetEvent('consumables:client:UseHeavyArmor', function()
-    if GetPedArmour(cache.ped) == 100 then QBCore.Functions.Notify('You already have enough armor on!', 'error') return end
+    if GetPedArmour(cache.ped) == 100 then ESX.ShowNotification('You already have enough armor on!', 'error') return end
     local PlayerData = QBCore.Functions.GetPlayerData()
     QBCore.Functions.Progressbar('use_heavyarmor', 'Putting on body armour..', 5000, false, true, {
         disableMovement = false,
@@ -431,7 +430,7 @@ RegisterNetEvent('consumables:client:ResetArmor', function()
             TriggerServerEvent('consumables:server:resetArmor')
         end)
     else
-        QBCore.Functions.Notify('You\'re not wearing a vest..', 'error')
+        ESX.ShowNotification('You\'re not wearing a vest..', 'error')
     end
 end)
 

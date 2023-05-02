@@ -1,4 +1,3 @@
-local QBCore = exports['qbx-core']:GetCoreObject()
 local loggedInPlayers = {}
 local checkUser = {}
 local previousPos = {}
@@ -32,9 +31,9 @@ RegisterNetEvent('QBCore:Server:OnPlayerLoaded', function()
     updateCheckUser(source)
 end)
 
-AddEventHandler('QBCore:Server:OnPlayerUnload', function(source)
-    loggedInPlayers[source] = false
-    checkUser[source] = false
+RegisterNetEvent('esx:playerDropped', function(playerId, reason)
+    loggedInPlayers[playerId] = false
+    checkUser[playerId] = false
 end)
 
 AddEventHandler('QBCore:Server:OnPermissionUpdate', function(source)
@@ -67,9 +66,9 @@ CreateThread(function()
                     if time[v] > 0 then
                         local _type = timeMinutes[time[v]]
                         if _type == 'minutes' then
-                            QBCore.Functions.Notify(v, 'You are AFK and will be kicked in ' .. math.ceil(time[v] / 60) .. ' minute(s)!', 'error', 10000)
+                            ESX.ShowNotification(v, 'You are AFK and will be kicked in ' .. math.ceil(time[v] / 60) .. ' minute(s)!', 'error', 10000)
                         elseif _type == 'seconds' then
-                            QBCore.Functions.Notify(v, 'You are AFK and will be kicked in ' .. time[v] .. ' seconds!', 'error', 10000)
+                            ESX.ShowNotification(v, 'You are AFK and will be kicked in ' .. time[v] .. ' seconds!', 'error', 10000)
                         end
                         time[v] -= 1
                     else

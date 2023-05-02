@@ -14,7 +14,8 @@ if not shouldAllow then return end
 
 RegisterCommand('record', function()
     StartRecording(1)
-    TriggerEvent('QBCore:Notify', 'Started Recording!', 'success')
+    --TriggerEvent('esx:showNotification', 'Started Recording!', 'success')
+    ESX.ShowNotification('Started Recording!', 'success')
 end, false)
 
 RegisterCommand('clip', function()
@@ -23,16 +24,21 @@ end, false)
 
 RegisterCommand('saveclip', function()
     StopRecordingAndSaveClip()
-    TriggerEvent('QBCore:Notify', 'Saved Recording!', 'success')
+    --TriggerEvent('esx:showNotification', 'Saved Recording!', 'success')
+    ESX.ShowNotification('Saved Recording!', 'success')
 end, false)
 
 RegisterCommand('delclip', function()
     StopRecordingAndDiscardClip()
-    TriggerEvent('QBCore:Notify', 'Deleted Recording!', 'error')
+    --TriggerEvent('esx:showNotification', 'Deleted Recording!', 'error')
+    ESX.ShowNotification('Deleted Recording!', 'error')
+
 end, false)
 
 RegisterCommand('editor', function()
     NetworkSessionLeaveSinglePlayer()
     ActivateRockstarEditor()
-    TriggerEvent('QBCore:Notify', 'Later aligator!', 'error')
+    --TriggerEvent('esx:showNotification', 'Later aligator!', 'error')
+    ESX.ShowNotification('Later aligator!', 'error')
+
 end, false)
