@@ -15,7 +15,7 @@ local modifierDensity = true
 local lastVehicle = nil
 local veloc
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+RegisterNetEvent('esx:playerLoaded',function(xPlayer, isNew, skin)
     if GetResourceState('ox_inventory'):match("start") then
         exports.ox_inventory:displayMetadata({
             harnessuses = "Uses",
