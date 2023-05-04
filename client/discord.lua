@@ -2,6 +2,7 @@
 
 
 local playersConnected = GlobalState.PlayerCount
+local maxPlayers = GetConvar("sv_maxclients", 48)
 
 AddStateBagChangeHandler('PlayerCount', nil, function(bagName, _, value)
      if bagName ~= "global" or not value then return end
@@ -14,7 +15,7 @@ CreateThread(function()
         SetDiscordAppId()
 
         -- Here you will have to put the image name for the 'large' icon.
-        SetDiscordRichPresenceAsset('logo_name')
+        SetDiscordRichPresenceAsset('newdawn')
 
         -- (11-11-2018) New Natives:
 
@@ -22,12 +23,12 @@ CreateThread(function()
         SetDiscordRichPresenceAssetText('This is a lage icon with text')
 
         -- Here you will have to put the image name for the 'small' icon.
-        SetDiscordRichPresenceAssetSmall('logo_name')
+        SetDiscordRichPresenceAssetSmall('newdawn')
 
         -- Here you can add hover text for the 'small' icon.
         SetDiscordRichPresenceAssetSmallText('This is a lsmall icon with text')
 
-        SetRichPresence(('Players %s/64'):format(playersConnected))
+        SetRichPresence(('Players %s/%s'):format(playersConnected, maxPlayers))
 
         -- (26-02-2021) New Native:
 
@@ -36,7 +37,7 @@ CreateThread(function()
             First paramater is the button index (0 or 1), second is the title and
             last is the url (this has to start with 'fivem://connect/' or 'https://')
         ]]--
-        SetDiscordRichPresenceAction(0, 'First Button!', 'fivem://connect/localhost:30120')
+        SetDiscordRichPresenceAction(0, 'First Button!', 'fivem://connect/play.newdawnrp.fr')
         SetDiscordRichPresenceAction(1, 'Second Button!', 'fivem://connect/localhost:30120')
 
         -- It updates every minute just in case.
