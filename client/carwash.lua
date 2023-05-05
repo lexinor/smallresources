@@ -17,20 +17,26 @@ end
 
 RegisterNetEvent('carwash:client:washCar', function()
     washingVehicle = true
-    QBCore.Functions.Progressbar('search_cabin', 'Vehicle is being washed ..', math.random(4000, 8000), false, true, {
-        disableMovement = true,
-        disableCarMovement = true,
-        disableMouse = false,
-        disableCombat = true,
-    }, {}, {}, {}, function() -- Done
+    if lib.progressBar({
+        duration = math.random(4000, 8000),
+        label = 'Vehicle is being washed ..',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {
+            car = true,
+            mouse = false,
+            combat = true,
+            move = true,
+        },
+    }) then 
         SetVehicleDirtLevel(cache.vehicle, 0.0)
         SetVehicleUndriveable(cache.vehicle, false)
         WashDecalsFromVehicle(cache.vehicle, 1.0)
         washingVehicle = false
-    end, function() -- Cancel
+     else 
         ESX.ShowNotification('Washing canceled ..', 'error')
         washingVehicle = false
-    end)
+    end
 end)
 
 CreateThread(function()

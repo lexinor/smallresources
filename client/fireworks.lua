@@ -107,23 +107,30 @@ CreateThread(function()
 end)
 
 RegisterNetEvent('fireworks:client:UseFirework', function(itemName, assetName)
-    QBCore.Functions.Progressbar('spawn_object', 'Placing object..', 3000, false, true, {
-        disableMovement = true,
-        disableCarMovement = true,
-        disableMouse = false,
-        disableCombat = true,
-    }, {
-        animDict = 'anim@narcotics@trash',
-        anim = 'drop_front',
-        flags = 16,
-    }, {}, {}, function() -- Done
+    if lib.progressBar({
+        duration = math.random(4000, 8000),
+        label = 'Vehicle is being washed ..',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {
+            car = true,
+            mouse = false,
+            combat = true,
+            move = true,
+        },
+        anim = {
+            dict = 'anim@narcotics@trash',
+            clip = 'drop_front',
+            flag = 16,
+        },
+    }) then 
         StopAnimTask(cache.ped, 'anim@narcotics@trash', 'drop_front', 1.0)
         TriggerServerEvent('consumables:server:UseFirework', itemName)
         TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items[itemName], 'remove')
         local pos = GetEntityCoords(cache.ped)
         DoFireWork(assetName, pos)
-    end, function() -- Cancel
+    else 
         StopAnimTask(cache.ped, 'anim@narcotics@trash', 'drop_front', 1.0)
         ESX.ShowNotification('Canceled..', 'error')
-    end)
+    end
 end)
